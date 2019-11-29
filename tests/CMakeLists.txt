@@ -16,7 +16,8 @@ function(trycompile srcfile)
 
   if (NOT compiled)
     message("${Red}${srcfile} FAILED ${ColourReset}")
-    message(FATAL_ERROR "${output}")
+    # message(WARNING "${output}")
+    # message(FATAL_ERROR "${output}")
   endif(NOT compiled)
 endfunction()
 
@@ -43,6 +44,13 @@ trycompile(parallelDo1.f90)
 trycompile(parallelDo2.f90)
 trycompile(parallelDo3.f90)
 trycompile(parallelDo4.f90)
+trycompile(parallelDoSIMD1.f90)
+
+# target
+trycompile(targetParallelDo1.f90)
+trycompile(targetParallelLoop1.f90)
+trycompile(targetTeamsDistribute1.f90)
+trycompile(targetTeamsDistributeSIMD1.f90)
 
 # teams
 trycompile(teams.f90)
@@ -51,5 +59,11 @@ trycompile(teams.f90)
 trycompile(loop1.f90)
 trycompile(parallelLoop1.f90)
 
+# master
+trycompile(parallelMasterTaskloop1.f90)
+
 # sections
 trycompile(parallelSections1.f90)
+
+# workshare
+trycompile(parallelWorkshare1.f90)

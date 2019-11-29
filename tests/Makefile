@@ -1,6 +1,7 @@
 FC=gfortran
 FOPTS=-fopenmp
 file=parallelSections
+file=parallelSingleDepend1
 
 all: build
 
