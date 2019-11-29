@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project(testParallelDirectives LANGUAGES Fortran)
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+# enable_testing()
+add_subdirectory(tests)
