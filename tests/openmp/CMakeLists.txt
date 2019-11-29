@@ -1,27 +1,3 @@
-if(NOT WIN32)
-  string(ASCII 27 Esc)
-  set(ColourReset "${Esc}[m")
-  set(Red         "${Esc}[31m")
-  set(Green       "${Esc}[32m")
-  set(Blue        "${Esc}[34m")
-endif()
-
-function(trycompile srcfile)
-  try_compile(
-    compiled
-    "${CMAKE_BINARY_DIR}/temp"
-    "${CMAKE_SOURCE_DIR}/tests/${srcfile}"
-    OUTPUT_VARIABLE output
-    )
-
-  if (NOT compiled)
-    message("${Red}${srcfile} FAILED ${ColourReset}")
-    # message(WARNING "${output}")
-    # message(FATAL_ERROR "${output}")
-  endif(NOT compiled)
-endfunction()
-
-
 # parallel, private, firstprivate, shared, copyin,
 trycompile(parallel1.f90)
 trycompile(parallel2.f90)
