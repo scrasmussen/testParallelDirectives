@@ -1,45 +1,51 @@
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 # parallel, private, firstprivate, shared, copyin,
-trycompile(parallel1.f90)
-trycompile(parallel2.f90)
-trycompile(parallel3.f90)
-trycompile(parallel4.f90)
+message("${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel1.f90")
+add_test(parallel1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel1.f90)
+add_test(parallel2 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel2.f90)
+add_test(parallel3 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel3.f90)
+add_test(parallel4 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel4.f90)
 
 # do
-trycompile(do1.f90)
-trycompile(do2.f90)
-# trycompile(do3.f90)
-# trycompile(do4.f90)
-trycompile(do5.f90)
-trycompile(do6.f90)
-trycompile(do7.f90)
-trycompile(do8.f90)
-trycompile(do9.f90)
+add_test(do1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do1.f90)
+add_test(do2 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do2.f90)
+# add_test(do3 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do3.f90)
+# add_test(do4 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do4.f90)
+add_test(do5 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do5.f90)
+add_test(do6 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do6.f90)
+add_test(do7 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do7.f90)
+add_test(do8 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do8.f90)
+add_test(do9 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do9.f90)
 
 # parallel do
-trycompile(parallelDo1.f90)
-trycompile(parallelDo2.f90)
-trycompile(parallelDo3.f90)
-trycompile(parallelDo4.f90)
-trycompile(parallelDoSIMD1.f90)
+add_test(parallelDo1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDo1.f90)
+add_test(parallelDo2 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDo2.f90)
+add_test(parallelDo3 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDo3.f90)
+add_test(parallelDo4 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDo4.f90)
+add_test(parallelDoSIMD1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDoSIMD1.f90)
 
 # target
-trycompile(targetParallelDo1.f90)
-trycompile(targetParallelLoop1.f90)
-trycompile(targetTeamsDistribute1.f90)
-trycompile(targetTeamsDistributeSIMD1.f90)
+add_test(targetParallelDo1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/targetParallelDo1.f90)
+add_test(targetParallelLoop1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/targetParallelLoop1.f90)
+add_test(targetTeamsDistribute1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}//
+  targetTeamsDistribute1.f90)
+add_test(targetTeamsDistributeSIMD1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}//
+  targetTeamsDistributeSIMD1.f90)
 
 # teams
-trycompile(teams.f90)
+add_test(teams ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/teams.f90)
 
 # loop
-trycompile(loop1.f90)
-trycompile(parallelLoop1.f90)
+add_test(loop1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/loop1.f90)
+add_test(parallelLoop1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelLoop1.f90)
 
 # master
-trycompile(parallelMasterTaskloop1.f90)
+add_test(parallelMasterTaskloop1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}//
+  parallelMasterTaskloop1.f90)
 
 # sections
-trycompile(parallelSections1.f90)
+add_test(parallelSections1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelSections1.f90)
 
 # workshare
-trycompile(parallelWorkshare1.f90)
+add_test(parallelWorkshare1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelWorkshare1.f90)
