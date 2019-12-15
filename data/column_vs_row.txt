@@ -1,0 +1,234 @@
+
+Currently Loaded Modules:
+  1) emacs-25.3-gcc-7.3.0-watj4lw
+  2) cmake-3.13.4
+  3) GCCcore/8.2.0
+  4) binutils/2.31.1-GCCcore-8.2.0
+  5) GCC/8.2.0-2.31.1
+  6) icc/2019.1.144-GCC-8.2.0-2.31.1
+  7) ifort/2019.1.144-GCC-8.2.0-2.31.1
+  8) iccifort/2019.1.144-GCC-8.2.0-2.31.1
+  9) impi/2018.4.274-iccifort-2019.1.144-GCC-8.2.0-2.31.1
+ 10) iimpi/2019a
+ 11) imkl/2019.1.144-iimpi-2019a
+ 12) intel/2019a
+
+ 
+
++ echo '========== gfortran 0 Optimization ========'
+========== gfortran 0 Optimization ========
++ ./gfortranO0.exe
+ n =           2
+ row major time   :   1.9394792616367340E-007
+ column major time:   1.3399403542280197E-007
+ n =           4
+ row major time   :   1.6600824892520905E-007
+ column major time:   1.7601996660232544E-007
+ n =           8
+ row major time   :   4.4400803744792938E-007
+ column major time:   4.2299507185816765E-007
+ n =          16
+ row major time   :   1.4620018191635609E-006
+ column major time:   1.4719553291797638E-006
+ n =          32
+ row major time   :   5.5999844335019588E-006
+ column major time:   6.0279853641986847E-006
+ n =          64
+ row major time   :   2.3289001546800137E-005
+ column major time:   2.2794003598392010E-005
+ n =         128
+ row major time   :   9.0310000814497471E-005
+ column major time:   8.9237990323454142E-005
+ n =         256
+ row major time   :   4.6217796625569463E-004
+ column major time:   3.5799498436972499E-004
+ n =         512
+ row major time   :   1.8649370176717639E-003
+ column major time:   1.4100850094109774E-003
+ n =        1024
+ row major time   :   6.8342220038175583E-003
+ column major time:   5.6408930104225874E-003
+ n =        2048
+ row major time   :   6.1615474987775087E-002
+ column major time:   2.2590838954783976E-002
+ n =        4096
+ row major time   :  0.27225326996995136     
+ column major time:   9.0124609996564686E-002
+ n =        8192
+ row major time   :   1.0503270149929449     
+ column major time:  0.36031592899234965     
+ n =       16384
+ row major time   :   4.0678657099488191     
+ column major time:   1.4403062809724361     
+ n =       32768
+ row major time   :   16.453558784967754     
+ column major time:   5.7668948380160145     
+ n =       65536
+ row major time   :   68.326284664974082     
+ column major time:   23.070880175044294     
+ n =      131072
+ row major time   :   1393.3281673659803     
+ column major time:   454.43116289598402     
++ echo '========== gfortran 3 Optimization ========'
+========== gfortran 3 Optimization ========
++ ./gfortranO3.exe
+ n =           2
+ row major time   :   1.6903504729270935E-007
+ column major time:   8.3993654698133469E-008
+ n =           4
+ row major time   :   1.1996598914265633E-007
+ column major time:   1.1100200936198235E-007
+ n =           8
+ row major time   :   1.7700949683785439E-007
+ column major time:   1.6897683963179588E-007
+ n =          16
+ row major time   :   6.0495221987366676E-007
+ column major time:   5.6700082495808601E-007
+ n =          32
+ row major time   :   2.9249931685626507E-006
+ column major time:   2.9109651222825050E-006
+ n =          64
+ row major time   :   1.3559998478740454E-005
+ column major time:   1.3409997336566448E-005
+ n =         128
+ row major time   :   5.7170982472598553E-005
+ column major time:   5.6785997003316879E-005
+ n =         256
+ row major time   :   2.3896404309198260E-004
+ column major time:   2.3375602904707193E-004
+ n =         512
+ row major time   :   9.6282601589336991E-004
+ column major time:   9.5171399880200624E-004
+ n =        1024
+ row major time   :   3.8499070215038955E-003
+ column major time:   3.8287320057861507E-003
+ n =        2048
+ row major time   :   3.7890572973992676E-002
+ column major time:   1.5736272966023535E-002
+ n =        4096
+ row major time   :  0.17003577196737751     
+ column major time:   6.3007730001118034E-002
+ n =        8192
+ row major time   :  0.78297683002892882     
+ column major time:  0.25112540996633470     
+ n =       16384
+ row major time   :   2.7652986819739453     
+ column major time:   1.0067607309902087     
+ n =       32768
+ row major time   :   10.526618600997608     
+ column major time:   4.0248694859910756     
+ n =       65536
+ row major time   :   43.317467245971784     
+ column major time:   16.103824229037855     
+ n =      131072
+ row major time   :   1276.6937684080331     
+ column major time:   452.37471877899952     
++ echo '========== intel 0 Optimization ========'
+========== intel 0 Optimization ========
++ ./intelO0.exe
+ n =           2
+ row major time   :  0.000000000000000E+000
+ column major time:  0.000000000000000E+000
+ n =           4
+ row major time   :  0.000000000000000E+000
+ column major time:  9.536743164062500E-007
+ n =           8
+ row major time   :  1.192092895507812E-006
+ column major time:  0.000000000000000E+000
+ n =          16
+ row major time   :  2.145767211914062E-006
+ column major time:  1.907348632812500E-006
+ n =          32
+ row major time   :  5.960464477539062E-006
+ column major time:  5.960464477539062E-006
+ n =          64
+ row major time   :  2.312660217285156E-005
+ column major time:  2.288818359375000E-005
+ n =         128
+ row major time   :  1.149177551269531E-004
+ column major time:  8.893013000488281E-005
+ n =         256
+ row major time   :  5.900859832763672E-004
+ column major time:  3.569126129150391E-004
+ n =         512
+ row major time   :  2.427101135253906E-003
+ column major time:  1.430034637451172E-003
+ n =        1024
+ row major time   :  8.867025375366211E-003
+ column major time:  5.635976791381836E-003
+ n =        2048
+ row major time   :  9.298610687255859E-002
+ column major time:  2.266192436218262E-002
+ n =        4096
+ row major time   :  0.410195827484131     
+ column major time:  9.046006202697754E-002
+ n =        8192
+ row major time   :   1.66655707359314     
+ column major time:  0.362348794937134     
+ n =       16384
+ row major time   :   6.65693712234497     
+ column major time:   1.44957780838013     
+ n =       32768
+ row major time   :   26.3992328643799     
+ column major time:   5.78994703292847     
+ n =       65536
+ row major time   :   110.366250038147     
+ column major time:   23.1663458347321     
+ n =      131072
+ row major time   :   1686.97890305519     
+ column major time:   470.890984058380     
++ echo '========== intel 3 Optimization ========'
+========== intel 3 Optimization ========
++ ./intelO3.exe
+ n =           2
+ row major time   :  0.000000000000000E+000
+ column major time:  0.000000000000000E+000
+ n =           4
+ row major time   :  0.000000000000000E+000
+ column major time:  0.000000000000000E+000
+ n =           8
+ row major time   :  0.000000000000000E+000
+ column major time:  0.000000000000000E+000
+ n =          16
+ row major time   :  1.192092895507812E-006
+ column major time:  1.192092895507812E-006
+ n =          32
+ row major time   :  9.536743164062500E-007
+ column major time:  4.053115844726562E-006
+ n =          64
+ row major time   :  5.006790161132812E-006
+ column major time:  1.502037048339844E-005
+ n =         128
+ row major time   :  1.811981201171875E-005
+ column major time:  5.888938903808594E-005
+ n =         256
+ row major time   :  1.060962677001953E-004
+ column major time:  2.391338348388672E-004
+ n =         512
+ row major time   :  4.410743713378906E-004
+ column major time:  9.782314300537109E-004
+ n =        1024
+ row major time   :  1.592874526977539E-003
+ column major time:  3.850936889648438E-003
+ n =        2048
+ row major time   :  2.017807960510254E-002
+ column major time:  1.549696922302246E-002
+ n =        4096
+ row major time   :  9.127712249755859E-002
+ column major time:  6.192994117736816E-002
+ n =        8192
+ row major time   :  0.373095989227295     
+ column major time:  0.248292922973633     
+ n =       16384
+ row major time   :   1.45854592323303     
+ column major time:  0.992594957351685     
+ n =       32768
+ row major time   :   5.89675402641296     
+ column major time:   3.98902392387390     
+ n =       65536
+ row major time   :   24.7196090221405     
+ column major time:   15.9507730007172     
+ n =      131072
+ row major time   :   834.908318996429     
+ column major time:   438.396687030792     
++ rm /mnt/gpfs0/home/s280353/src/testParallelDirectives/tests/elementery_tests/168238.mgmt01
