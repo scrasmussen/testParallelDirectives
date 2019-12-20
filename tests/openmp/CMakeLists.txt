@@ -1,7 +1,4 @@
-set(CMAKE_VERBOSE_MAKEFILE ON)
-
 # parallel, private, firstprivate, shared, copyin,
-message("${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel1.f90")
 add_test(parallel1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel1.f90)
 add_test(parallel2 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel2.f90)
 add_test(parallel3 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallel3.f90)
@@ -16,7 +13,6 @@ add_test(do5 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do5.f90)
 add_test(do6 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do6.f90)
 add_test(do7 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do7.f90)
 add_test(do8 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do8.f90)
-add_test(do9 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/do9.f90)
 
 # parallel do
 add_test(parallelDo1 ${CMAKE_Fortran_COMPILER} ${CMAKE_CURRENT_SOURCE_DIR}/parallelDo1.f90)
