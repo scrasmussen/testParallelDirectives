@@ -3,6 +3,7 @@
 set(fopt ${CMAKE_Fortran_FLAGS})
 separate_arguments(fopt)
 
+add_test(${CMAKE_Fortran_COMPILER} echo)
 add_test(parallel1 ${CMAKE_Fortran_COMPILER} ${fopt} ${CMAKE_CURRENT_SOURCE_DIR}/parallel1.f90)
 add_test(parallel2 ${CMAKE_Fortran_COMPILER} ${fopt} ${CMAKE_CURRENT_SOURCE_DIR}/parallel2.f90)
 add_test(parallel3 ${CMAKE_Fortran_COMPILER} ${fopt} ${CMAKE_CURRENT_SOURCE_DIR}/parallel3.f90)
