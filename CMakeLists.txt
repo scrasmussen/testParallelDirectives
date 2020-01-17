@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
 project(testParallelDirectives LANGUAGES Fortran)
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+
+# GNU flags
+# set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+# Cray flags
+set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp ")
 enable_testing()
 
 # coloring for trycompile function

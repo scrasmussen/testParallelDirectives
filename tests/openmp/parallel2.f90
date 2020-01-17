@@ -3,9 +3,9 @@ program loop
   implicit none
   integer, parameter :: n = 10
   integer :: i, A(n), b
-  b = 2
   !$omp parallel private(b)
   do i = 1,n
+     b = i
      A(i) = b
   end do
   !$omp end parallel

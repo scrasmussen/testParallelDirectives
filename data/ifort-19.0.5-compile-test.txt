@@ -1,0 +1,64 @@
+Running tests...
+/usr/bin/ctest --force-new-ctest-process 
+Test project /home/users/p02649/src/testParallelDirectives/build
+      Start  1: /opt/cray/pe/craype/2.6.3/bin/ftn
+ 1/25 Test  #1: /opt/cray/pe/craype/2.6.3/bin/ftn ...   Passed    0.00 sec
+      Start  2: parallel1
+ 2/25 Test  #2: parallel1 ...........................   Passed    0.39 sec
+      Start  3: parallel2
+ 3/25 Test  #3: parallel2 ...........................   Passed    0.36 sec
+      Start  4: parallel3
+ 4/25 Test  #4: parallel3 ...........................   Passed    0.36 sec
+      Start  5: parallel4
+ 5/25 Test  #5: parallel4 ...........................   Passed    0.36 sec
+      Start  6: do1
+ 6/25 Test  #6: do1 .................................   Passed    0.36 sec
+      Start  7: do2
+ 7/25 Test  #7: do2 .................................   Passed    0.37 sec
+      Start  8: do5
+ 8/25 Test  #8: do5 .................................   Passed    0.36 sec
+      Start  9: do6
+ 9/25 Test  #9: do6 .................................   Passed    0.36 sec
+      Start 10: do7
+10/25 Test #10: do7 .................................   Passed    0.36 sec
+      Start 11: do8
+11/25 Test #11: do8 .................................   Passed    0.36 sec
+      Start 12: parallelDo1
+12/25 Test #12: parallelDo1 .........................   Passed    0.37 sec
+      Start 13: parallelDo2
+13/25 Test #13: parallelDo2 .........................   Passed    0.37 sec
+      Start 14: parallelDo3
+14/25 Test #14: parallelDo3 .........................   Passed    0.37 sec
+      Start 15: parallelDo4
+15/25 Test #15: parallelDo4 .........................   Passed    0.44 sec
+      Start 16: parallelDoSIMD1
+16/25 Test #16: parallelDoSIMD1 .....................   Passed    0.38 sec
+      Start 17: targetParallelDo1
+17/25 Test #17: targetParallelDo1 ...................   Passed    0.39 sec
+      Start 18: targetParallelLoop1
+18/25 Test #18: targetParallelLoop1 .................   Passed    0.36 sec
+      Start 19: targetTeamsDistribute1
+19/25 Test #19: targetTeamsDistribute1 ..............***Failed    0.10 sec
+      Start 20: targetTeamsDistributeSIMD1
+20/25 Test #20: targetTeamsDistributeSIMD1 ..........***Failed    0.10 sec
+      Start 21: teams
+21/25 Test #21: teams ...............................   Passed    0.37 sec
+      Start 22: loop1
+22/25 Test #22: loop1 ...............................***Failed    0.14 sec
+      Start 23: parallelLoop1
+23/25 Test #23: parallelLoop1 .......................   Passed    0.36 sec
+      Start 24: parallelSections1
+24/25 Test #24: parallelSections1 ...................   Passed    0.37 sec
+      Start 25: parallelWorkshare1
+25/25 Test #25: parallelWorkshare1 ..................   Passed    0.36 sec
+
+88% tests passed, 3 tests failed out of 25
+
+Total Test time (real) =   8.18 sec
+
+The following tests FAILED:
+	 19 - targetTeamsDistribute1 (Failed)
+	 20 - targetTeamsDistributeSIMD1 (Failed)
+	 22 - loop1 (Failed)
+Errors while running CTest
+make: *** [Makefile:76: test] Error 8
