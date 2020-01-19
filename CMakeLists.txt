@@ -1,10 +1,52 @@
 cmake_minimum_required(VERSION 3.10)
 project(testParallelDirectives LANGUAGES Fortran)
 
-# GNU flags
-# set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+
+
+# execute_process(COMMAND "${CMAKE_Fortran_COMPILER} --version"
+# 							  RESULT_VARIABLE r1
+# 							  RESULTS_VARIABLE r2
+# 							  OUTPUT_VARIABLE ov
+# 							  ERROR_VARIABLE ev)
+
+# #							  OUTPUT_VARIABLE lc)
+
+# message("results are ${r1} and ${r2}.")
+# message("outputs are ${ov} and ${ev}.")
+# message("compiler is ${CMAKE_Fortran_COMPILER}")
+# message("compiler is ${CMAKE_Fortran_COMPILER_ID}")
+
+# SETTING CURRENT ENVIRONMENT
+set(LC "ifort")
+message("===working with ${LC}===")
+
+set(CMAKE_Fortran_COMPILER_ID "Cray")
+# set(CMAKE_Fortran_COMPILER_ID "GNU")
+# set(CMAKE_Fortran_COMPILER_ID "PGI")
+set(CMAKE_Fortran_COMPILER_ID "Intel")
+message("CMAKE_Fortran_COMPILER_ID = ${CMAKE_Fortran_COMPILER_ID}")
+
+
 # Cray flags
-set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp ")
+if("Cray" STREQUAL)
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp")
+endif()
+# GNU flags
+if("GNU" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+endif()
+# Intel flags
+if("Intel" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
+endif()
+# PGI flags
+if("PGI" STREQUAL)
+  set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -mp")
+endif()
+
+
+
+
 enable_testing()
 
 # coloring for trycompile function
