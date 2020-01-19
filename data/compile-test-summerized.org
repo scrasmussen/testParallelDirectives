@@ -1,0 +1,16 @@
+fails
+    8 - do5 (Failed)
+    9 - do6 (Failed)
+   10 - do7 (Failed)
+   17 - targetParallelDo1 (Failed)
+   18 - targetParallelLoop1 (Failed)
+   19 - targetTeamsDistribute1 (Failed)
+   20 - targetTeamsDistributeSIMD1 (Failed)
+   21 - teams (Failed)
+   22 - loop1 (Failed)
+   23 - parallelLoop1 (Failed)
+
+cray :        17,18,19,20,21,   23
+gnu  : 8,9,10,   18,19,20,21,22,23
+intel:              19,20,  ,22
+pgi  : 8,9,10    18,19,20,     ,23
