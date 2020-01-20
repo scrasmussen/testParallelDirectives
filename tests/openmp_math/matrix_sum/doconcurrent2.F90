@@ -36,7 +36,7 @@ program matvec_doloop
 
   call system_clock(count_init, count_rate)
   ! do loop
-  do concurrent (j=1:n, i=1,m)
+  do concurrent (j=1:n, i=1:m)
       A(i,j) = B(i,j) + C(i,j)
   end do
   call system_clock(count_fin)
