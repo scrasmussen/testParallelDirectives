@@ -17,18 +17,18 @@ project(testParallelDirectives LANGUAGES Fortran)
 # message("compiler is ${CMAKE_Fortran_COMPILER_ID}")
 
 # SETTING CURRENT ENVIRONMENT
-set(LC "ifort")
-message("===working with ${LC}===")
+# set(LC "ifort")
+# message("===working with ${LC}===")
 
 set(CMAKE_Fortran_COMPILER_ID "Cray")
 # set(CMAKE_Fortran_COMPILER_ID "GNU")
 # set(CMAKE_Fortran_COMPILER_ID "PGI")
-set(CMAKE_Fortran_COMPILER_ID "Intel")
+# set(CMAKE_Fortran_COMPILER_ID "Intel")
 message("CMAKE_Fortran_COMPILER_ID = ${CMAKE_Fortran_COMPILER_ID}")
 
 
 # Cray flags
-if("Cray" STREQUAL)
+if("Cray" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp")
 endif()
 # GNU flags
@@ -40,11 +40,9 @@ if("Intel" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
 endif()
 # PGI flags
-if("PGI" STREQUAL)
+if("PGI" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -mp")
 endif()
-
-
 
 
 enable_testing()
