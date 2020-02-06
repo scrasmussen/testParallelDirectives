@@ -2,30 +2,29 @@ cmake_minimum_required(VERSION 3.10)
 project(testParallelDirectives LANGUAGES Fortran)
 
 
+# Figure out which compiler is being used
+# This is for Cray systems
+execute_process(
+  COMMAND ${CMAKE_Fortran_COMPILER} --version
+	OUTPUT_VARIABLE fc_version
+  )
+string(FIND "${fc_version}" "Cray"  is_cray)
+string(FIND "${fc_version}" "Intel" is_intel)
+string(FIND "${fc_version}" "GNU"   is_gnu)
+string(FIND "${fc_version}" "PGI"   is_pgi)
 
-# execute_process(COMMAND "${CMAKE_Fortran_COMPILER} --version"
-# 							  RESULT_VARIABLE r1
-# 							  RESULTS_VARIABLE r2
-# 							  OUTPUT_VARIABLE ov
-# 							  ERROR_VARIABLE ev)
+if (is_cray GREATER -1)
+	set(CMAKE_Fortran_COMPILER_ID "Cray")
+elseif(is_intel GREATER -1)
+	set(CMAKE_Fortran_COMPILER_ID "Intel")
+elseif(is_gnu GREATER -1)
+	set(CMAKE_Fortran_COMPILER_ID "GNU")
+elseif(is_pgi GREATER -1)
+	set(CMAKE_Fortran_COMPILER_ID "PGI")
+endif()
+# Fortran Compiler ID has been chosen by now
 
-# #							  OUTPUT_VARIABLE lc)
-
-# message("results are ${r1} and ${r2}.")
-# message("outputs are ${ov} and ${ev}.")
-# message("compiler is ${CMAKE_Fortran_COMPILER}")
-# message("compiler is ${CMAKE_Fortran_COMPILER_ID}")
-
-# SETTING CURRENT ENVIRONMENT
-# set(LC "ifort")
-# message("===working with ${LC}===")
-
-set(CMAKE_Fortran_COMPILER_ID "Cray")
-# set(CMAKE_Fortran_COMPILER_ID "GNU")
-# set(CMAKE_Fortran_COMPILER_ID "PGI")
-# set(CMAKE_Fortran_COMPILER_ID "Intel")
-message("CMAKE_Fortran_COMPILER_ID = ${CMAKE_Fortran_COMPILER_ID}")
-
+set(CMAKE_Fortran_FLAGS "-O3")
 
 # Cray flags
 if("Cray" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
@@ -43,6 +42,11 @@ endif()
 if("PGI" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -mp")
 endif()
+
+
+# report the choices just to be clear
+message("-- Compiler is ${CMAKE_Fortran_COMPILER_ID} with FFLAGS = \
+${CMAKE_Fortran_FLAGS}")
 
 
 enable_testing()
