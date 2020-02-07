@@ -3,27 +3,31 @@
 set(fopt ${CMAKE_Fortran_FLAGS})
 separate_arguments(fopt)
 
+set(prob "matrixsum")
+
+function(set_aprun_omp exe)
+	set(aprun_command "aprun -n 1 -d $ENV{OMP_NUM_THREADS} ./${exe}" PARENT_SCOPE)
+endfunction()
+
+function(create_omp_test name)
+	add_executable(${name} ${name}.F90)
+	add_test(${prob}_${name} aprun -n 1 -d $ENV{OMP_NUM_THREADS} ./${name})
+endfunction()
+
+function(create_target_test name)
+	add_executable(${name} ${name}.F90)
+	add_test(${prob}_${name} aprun -n 1 ./${name})
+endfunction()
+
 # --- Fortran Intrinsics
-add_executable(do_loop doloop.F90)
-add_test(matrix_sum_do_loop aprun -n 16 ./do_loop)
-
-add_executable(do_concurrent1 doconcurrent1.F90)
-add_test(matrix_sum_do_concurrent1 aprun -n 16 ./do_concurrent1)
-
-add_executable(do_concurrent2 doconcurrent2.F90)
-add_test(matrix_sum_do_concurrent2 aprun -n 16 ./do_concurrent2)
+create_omp_test(doloop)
+create_omp_test(doconcurrent1)
+create_omp_test(doconcurrent2)
 
 # --- OpenMP
-add_executable(omp_parallel_do omp_parallel_do.F90)
-add_test(matrix_sum_omp_parallel_do aprun -n 16 ./omp_parallel_do)
-
-# add_executable(omp_parallel_loop omp_parallel_loop.F90)
-# add_test(matrix_sum_omp_parallel_loop aprun -n 16 ./omp_parallel_loop)
-
-add_executable(omp_target_parallel_do omp_target.F90)
-add_test(matrix_sum_omp_target_parallel_do aprun -n 1 ./omp_target_parallel_do)
-
-add_executable(omp_target_parallel_do_dataless omp_target_dataless.F90)
-add_test(matrix_sum_omp_target_parallel_do_dataless aprun -n 1 ./omp_target_parallel_do_dataless)
+create_omp_test(omp_parallel_do)
+create_omp_test(omp_parallel_loop)
+# create_target_test(omp_target)
+# create_target_test(omp_target_dataless)
 
 # --- OpenACC
