@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.10)
 project(testParallelDirectives LANGUAGES Fortran)
 
 
+# make sure OMP_NUM_THREADS is defined
+if ("$ENV{OMP_NUM_THREADS}" STREQUAL "")
+	message(FATAL_ERROR "Error: define OMP_NUM_THREADS")
+endif()
+
 # Figure out which compiler is being used
 # This is for Cray systems
 execute_process(
