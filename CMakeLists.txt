@@ -88,4 +88,7 @@ function(trycompile src_file path)
 endfunction()
 
 
-add_subdirectory(tests)
+# add_subdirectory(directive-tests)
+message("-- WARNING: edit CMakeLists.txt to add directive-tests directory")
+
+add_subdirectory(computation-tests)
