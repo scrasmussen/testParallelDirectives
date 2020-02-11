@@ -51,7 +51,7 @@ program matvec_doloop
   ! print *, "column major time:", time_fin - time_init
   write(2,fmt="(I8,A2)", advance="no") n, ", "
   write(2,fmt="(F20.6,A2)", advance="no") time_fin - time_init, ", "
-  write(2,fmt="(A9)") "omptarget"
+  write(2,fmt="(A9)") "ompTarget"
 
   deallocate(a,b,c)
   n = n * step
