@@ -1,4 +1,16 @@
 add_subdirectory(matrix_sum)
+
+# from Performance Evaluation of OpenMP's Target Construct on GPUs
+# - Hayashi and Shirako
+# add_subdirectory(vecAdd)
+# add_subdirectory(saxpy)
+# add_subdirectory(MM)
+# add_subdirectory(BS)
+# add_subdirectory(OMRIQ)
+# add_subdirectory(SP)
+
+
+
 # from EE663, slide 127
 # add_subdirectory(jacobi)
 # add_subdirectory(ep)

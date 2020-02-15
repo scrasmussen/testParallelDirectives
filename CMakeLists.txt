@@ -88,6 +88,27 @@ function(trycompile src_file path)
 endfunction()
 
 
+# --- Functions to generate tests
+function(create_test name)
+	add_executable(${name} ${name}.F90)
+	add_test(${prob}_${name} aprun -n 1 ./${name})
+endfunction()
+
+function(create_omp_test name)
+	add_executable(${name} ${name}.F90)
+	add_test(${prob}_${name} aprun -n 1 -d $ENV{OMP_NUM_THREADS} ./${name})
+endfunction()
+
+function(create_target_test name)
+	add_executable(${name} ${name}.F90 )
+	# target_compile_options(${name} PRIVATE -target-accel=craype-accel-nvidia60)
+	add_test(${prob}_${name} aprun -n 1 ./${name})
+endfunction()
+
+
+
+
+
 # add_subdirectory(directive-tests)
 message("-- WARNING: edit CMakeLists.txt to add directive-tests directory")
 
