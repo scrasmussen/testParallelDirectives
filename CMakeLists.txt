@@ -31,7 +31,6 @@ endif()
 # set optimization
 set(CMAKE_Fortran_FLAGS "-O3")
 # set debug flags
-message("${CMAKE_BUILD_TYPE} STREQUAL Debug")
 if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g")
 endif()
