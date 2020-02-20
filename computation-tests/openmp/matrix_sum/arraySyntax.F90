@@ -30,11 +30,7 @@ program matvec_do
 
   call system_clock(count_init, count_rate)
   ! do loop
-  do j=1,n
-    do i=1,m
-      A(i,j) = B(i,j) + C(i,j)
-    end do
-  end do
+  A = B + C
   call system_clock(count_fin)
 
   ! print *, "column major time:", time_fin - time_init

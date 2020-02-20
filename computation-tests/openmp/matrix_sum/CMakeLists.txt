@@ -2,6 +2,7 @@
 set(prob "matrixsum")
 
 # --- Fortran Intrinsics
+create_test(arraySyntax)
 create_test(do)
 create_test(doConcurrent1)
 create_test(doConcurrent2)
