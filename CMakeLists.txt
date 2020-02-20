@@ -31,23 +31,29 @@ endif()
 # set optimization
 set(CMAKE_Fortran_FLAGS "-O3")
 # set debug flags
-if("Debug" STREQUAL ${CMAKE_BUILD_TYPE})
+message("${CMAKE_BUILD_TYPE} STREQUAL Debug")
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
 	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -g")
 endif()
+
+
+# --- Compiler Specific Flags ---
+set(CMAKE_EXEC_EXECUTABLE "")
 # Cray flags
-if("Cray" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+if("Cray" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp")
+  set(CMAKE_EXEC_EXECUTABLE "aprun -n 1")
 endif()
 # GNU flags
-if("GNU" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+if("GNU" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
 endif()
 # Intel flags
-if("Intel" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+if("Intel" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
 endif()
 # PGI flags
-if("PGI" STREQUAL ${CMAKE_Fortran_COMPILER_ID})
+if("PGI" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -mp")
 endif()
 # report the choices just to be clear
@@ -66,27 +72,6 @@ if(NOT WIN32)
   set(Green       "${Esc}[32m")
   set(Blue        "${Esc}[34m")
 endif()
-
-
-# --- Functions to generate tests ---
-function(create_test name)
-	add_executable(${name} ${name}.F90)
-	target_link_libraries(${name} benchmark_tools)
-	add_test(${prob}_${name} aprun -n 1 ./${name})
-endfunction()
-
-function(create_omp_test name)
-	add_executable(${name} ${name}.F90)
-	target_link_libraries(${name} benchmark_tools)
-	add_test(${prob}_${name} aprun -n 1 -d $ENV{OMP_NUM_THREADS} ./${name})
-endfunction()
-
-function(create_target_test name)
-	add_executable(${name} ${name}.F90 )
-	target_link_libraries(${name} benchmark_tools)
-	# target_compile_options(${name} PRIVATE -target-accel=craype-accel-nvidia60)
-	add_test(${prob}_${name} aprun -n 1 ./${name})
-endfunction()
 
 
 # --- Add Subdirectories ---
