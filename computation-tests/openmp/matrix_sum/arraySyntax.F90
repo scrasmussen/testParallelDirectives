@@ -1,14 +1,15 @@
-program matvec_do
+program matsum_arraySyntax
   use benchmark_tools
   implicit none
   double precision, dimension(:,:), allocatable :: A,B,C
   integer :: m, n, i, j, sum, max_n, step, fint
   integer(kind=8) :: count_fin, count_init, count_rate
   double precision :: time
-  character(:), allocatable :: arg1, prob
+  character(:), allocatable :: prob, method
   logical :: fexists
 
-  prob = "matrix_sum"
+  prob = "matrixSum"
+  method = "arraySyntax"
   call open_report(prob, fint)
 
   n = 64
@@ -35,11 +36,11 @@ program matvec_do
 
   ! print *, "column major time:", time_fin - time_init
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, "do", fint)
+  call report(n, time, method, fint)
 
 
   deallocate(a,b,c)
   n = n * step
   end do
 
-end program matvec_do
+end program matsum_arraySyntax
