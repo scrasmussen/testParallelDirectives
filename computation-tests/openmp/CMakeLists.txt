@@ -3,11 +3,12 @@ add_subdirectory(matrix_sum)
 # from Performance Evaluation of OpenMP's Target Construct on GPUs
 # - Hayashi and Shirako
 # add_subdirectory(vecAdd)
-# add_subdirectory(saxpy)
-# add_subdirectory(MM)
-# add_subdirectory(BS)
-# add_subdirectory(OMRIQ)
-# add_subdirectory(SP)
+# add_subdirectory(saxpy) # single-precision scalar multiply and vector add
+# add_subdirectory(MM) # Matrix Multiplication
+# add_subdirectory(BS) # Black Scholes
+# following two are from SPEC 2015
+# add_subdirectory(OMRIQ) # 3-D MRI reconstruction from SPEC ACCEL
+# add_subdirectory(SP) # Scalar Penta-diagonal solver from SPEC ACCEL
 
 
 

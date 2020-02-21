@@ -2,8 +2,7 @@ module benchmark_tools
   implicit none
 contains
   pure function compute_time(count_rate, count_init, count_fin)
-    integer, intent(IN) :: count_rate
-    double precision, intent(IN) :: count_init, count_fin
+    integer(kind=8), intent(IN) :: count_rate, count_init, count_fin
     double precision :: compute_time, time_init, time_fin, count_rate_d
     count_rate_d = count_rate
     time_init = count_init / count_rate_d
