@@ -38,10 +38,10 @@ program matsum_doloop
   call system_clock(count_fin)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, method, fint)
+  call report(n, time, matsum_p, method, fint)
 
   deallocate(a,b,c)
   n = n * step
-  end do
+end do
 
 end program matsum_doloop

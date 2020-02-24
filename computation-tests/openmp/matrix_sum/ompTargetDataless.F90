@@ -45,8 +45,7 @@ program matsum_doloop
   !$omp target exit data map(from:A)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, method, fint)
-  write(2,fmt="(A17)") "ompTargetDataless"
+  call report(n, time, matsum_p, method, fint)
 
   deallocate(a,b,c)
   n = n * step

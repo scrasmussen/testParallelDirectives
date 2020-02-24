@@ -42,8 +42,7 @@ program matsum_doloop
   call system_clock(count_fin)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, method, fint)
-  write(2,fmt="(A15)") "ompParallelLoop"
+  call report(n, time, matsum_p, method, fint)
 
   deallocate(a,b,c)
   n = n * step

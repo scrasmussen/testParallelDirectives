@@ -1,4 +1,4 @@
-program matsum_arraySyntax
+bprogram matsum_arraySyntax
   use benchmark_tools
   implicit none
   double precision, dimension(:,:), allocatable :: A,B,C
@@ -36,7 +36,7 @@ program matsum_arraySyntax
 
   ! print *, "column major time:", time_fin - time_init
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, method, fint)
+  call report(n, time, matsum_p, method, fint)
 
 
   deallocate(a,b,c)
