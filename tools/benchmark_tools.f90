@@ -1,5 +1,18 @@
 module benchmark_tools
   implicit none
+  enum, bind(C)
+     enumerator :: omp_api, acc_api
+  end enum
+  enum, bind(C)
+     enumerator :: matsum_p
+  end enum
+  enum, bind(C)
+     enumerator :: arraySyntax_m, do_m
+     enumerator :: doConcurrent1_m, doConcurrent2_m
+     enumerator :: ompParallelDo_m, ompParallelLoop_m
+     enumerator :: ompTarget_m, ompTargetDataless_m, ompTargetArraySyntax_m
+     enumerator :: ompWorkshare_m
+  end enum
 contains
   pure function compute_time(count_rate, count_init, count_fin)
     integer(kind=8), intent(IN) :: count_rate, count_init, count_fin
@@ -10,13 +23,12 @@ contains
     compute_time = time_fin - time_init
   end function compute_time
 
-  subroutine open_report(problem_name, fint)
-    character(:), allocatable, intent(IN) :: problem_name
+  subroutine open_report(fint)
     integer, intent(OUT) :: fint
     character(:), allocatable :: fname
     logical :: fexists
 
-    fname = "output_" // problem_name // ".txt"
+    fname = "output.txt"
     inquire(file=fname, exist=fexists)
 
     fint = 2 ! this can be any number
@@ -26,14 +38,34 @@ contains
     end if
   end subroutine open_report
 
-
-  subroutine report(n, time, method_name, fint)
+  subroutine report(n, time, method_enum, problem_enum, api_enum, fint)
+    use iso_c_binding, only: c_int
     integer, intent(IN) :: n, fint
     double precision, intent(IN) :: time
-    character(*), intent(IN) :: method_name
+    ! character(*), intent(IN) :: method_name
+    integer(c_int) :: problem_enum, method_enum, api_enum
 
     write(fint,fmt="(I8,A2)", advance="no") n, ", "
     write(fint,fmt="(F20.6,A2)", advance="no") time, ", "
-    write(fint,*) method_name
+    write(fint,fmt="(I2,A2)", advance="no") method_enum, ", "
+    write(fint,fmt="(I2,A2)", advance="no") problem_enum, ", "
+    write(fint,*) api_enum
+    ! write(fint,*) method_name
   end subroutine report
+
+  ! subroutine open_report(problem_name, fint)
+  !   character(:), allocatable, intent(IN) :: problem_name
+  !   integer, intent(OUT) :: fint
+  !   character(:), allocatable :: fname
+  !   logical :: fexists
+
+  !   fname = "output_" // problem_name // ".txt"
+  !   inquire(file=fname, exist=fexists)
+
+  !   fint = 2 ! this can be any number
+  !   open(fint, file=fname,action='write',position='append')
+  !   if (fexists .eqv. .false.) then
+  !      write(fint,*) "n,time,method"
+  !   end if
+  ! end subroutine open_report
 end module benchmark_tools
