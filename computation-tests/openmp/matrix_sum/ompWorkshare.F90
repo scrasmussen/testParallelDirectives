@@ -27,22 +27,15 @@ program matsum_doloop
   call random_number(c)
   a = 0
 
-  !$omp target enter data map(to:B,C)
-
   call system_clock(count_init, count_rate)
   ! do loop
-  !$omp target teams distribute parallel do collapse(2)
-  do j=1,n
-    do i=1,m
-      A(i,j) = B(i,j) + C(i,j)
-    end do
-  end do
-  !$omp end target teams distribute parallel do
+  !$omp parallel workshare
+  A = B + C
+  !$omp end parallel workshare
   call system_clock(count_fin)
-  !$omp target exit data map(from:A)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, ompTargetDataless_m, omp_api, matsum_p, fint)
+  call report(n, time, ompWorkshare_m, omp_api, matsum_p, fint)
 
   deallocate(a,b,c)
   n = n * step

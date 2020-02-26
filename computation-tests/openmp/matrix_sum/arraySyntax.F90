@@ -1,16 +1,13 @@
-bprogram matsum_arraySyntax
+program matsum_arraySyntax
   use benchmark_tools
   implicit none
   double precision, dimension(:,:), allocatable :: A,B,C
   integer :: m, n, i, j, sum, max_n, step, fint
   integer(kind=8) :: count_fin, count_init, count_rate
   double precision :: time
-  character(:), allocatable :: prob, method
   logical :: fexists
 
-  prob = "matrixSum"
-  method = "arraySyntax"
-  call open_report(prob, fint)
+  call open_report(fint)
 
   n = 64
   max_n = 20000
@@ -34,9 +31,8 @@ bprogram matsum_arraySyntax
   A = B + C
   call system_clock(count_fin)
 
-  ! print *, "column major time:", time_fin - time_init
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, matsum_p, method, fint)
+  call report(n, time, arraySyntax_m, omp_api, matsum_p, fint)
 
 
   deallocate(a,b,c)

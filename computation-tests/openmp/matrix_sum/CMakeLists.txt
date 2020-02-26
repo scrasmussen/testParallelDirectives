@@ -12,5 +12,6 @@ create_omp_test(ompParallelDo)
 create_omp_test(ompParallelLoop)
 create_target_test(ompTarget)
 create_target_test(ompTargetDataless)
+create_target_test(ompWorkshare)
 
 # --- OpenACC

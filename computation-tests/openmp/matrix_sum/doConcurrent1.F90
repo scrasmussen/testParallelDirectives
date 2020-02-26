@@ -5,12 +5,9 @@ program matsum_doloop
   integer :: m, n, i, j, sum, max_n, step, fint
   integer(kind=8) :: count_fin, count_init, count_rate
   double precision :: time
-  character(:), allocatable :: prob, method
   logical :: fexists
 
-  prob = "matrixSum"
-  method = "doConcurrent1"
-  call open_report(prob, fint)
+  call open_report(fint)
 
   n = 64
   max_n = 20000
@@ -37,7 +34,7 @@ program matsum_doloop
   call system_clock(count_fin)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, matsum_p, method, fint)
+  call report(n, time, doConcurrent1_m, omp_api, matsum_p, fint)
 
   deallocate(a,b,c)
   n = n * step
