@@ -26,6 +26,7 @@ endfunction()
 function(create_target_test name)
 	add_executable(${name} ${name}.F90 )
 	target_link_libraries(${name} benchmark_tools)
+	target_compile_options(${name} PRIVATE -target-accel=nvidia60)
 	# target_compile_options(${name} PRIVATE -target-accel=sm_60)
 	add_test(
 		NAME ${prob}_${name}
