@@ -1,13 +1,13 @@
 module benchmark_tools
   implicit none
   enum, bind(C)
-     enumerator :: cray_c, gnu_c, intel_c, pgi_c,
+     enumerator :: cray_c, gnu_c, intel_c, pgi_c
   end enum
   enum, bind(C)
      enumerator :: omp_api, acc_api
   end enum
   enum, bind(C)
-     enumerator :: matsum_p
+     enumerator :: matsum_p, saxpy_p
   end enum
   enum, bind(C)
      enumerator :: arraySyntax_m, do_m
