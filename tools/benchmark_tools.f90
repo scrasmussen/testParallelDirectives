@@ -1,6 +1,9 @@
 module benchmark_tools
   implicit none
   enum, bind(C)
+     enumerator :: cray_c, intel_c, pgi_c, gnu_c
+  end enum
+  enum, bind(C)
      enumerator :: omp_api, acc_api
   end enum
   enum, bind(C)
@@ -34,7 +37,7 @@ contains
     fint = 2 ! this can be any number
     open(fint, file=fname,action='write',position='append')
     if (fexists .eqv. .false.) then
-       write(fint,*) "n,time,method"
+       write(fint,*) "n,time,method_enum,problem_enum,api_enum,compiler_enum"
     end if
   end subroutine open_report
 
