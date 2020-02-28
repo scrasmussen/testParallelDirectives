@@ -1,0 +1,17 @@
+# Data Info
+
+This data was produced with `-O3` optimization and OpenMP flags
+
+=Data Layout=
+n, time, method_enum, problem_enum, api_enum, compiler_enum
+
+=Possible Values=
+| Enumerator        | Value                                                 |
+| ----------------- | -------------------------------                       |
+| compiler_enum     | cray_c, gnu_c, intel_c, pgi_c                         |
+| api_enum          | omp_api, acc_api                                      |
+| problem_enum      | matsum_p, saxpy_p                                     |
+| method_enum       | arraySyntax_m, do_m, doConcurrent1_m, doConcurrent2_m |
+|                   | ompParallelDo_m, ompParallelLoop_m, ompTarget_m,      |
+|                   | ompTargetDataless_m, ompTargetArraySyntax_m,          |
+|                   | ompWorkshare_m                                        |
