@@ -1,7 +1,7 @@
 module benchmark_tools
   implicit none
   enum, bind(C)
-     enumerator :: cray_c, intel_c, pgi_c, gnu_c
+     enumerator :: cray_c, gnu_c, intel_c, pgi_c,
   end enum
   enum, bind(C)
      enumerator :: omp_api, acc_api
@@ -52,7 +52,8 @@ contains
     write(fint,fmt="(F20.6,A2)", advance="no") time, ", "
     write(fint,fmt="(I2,A2)", advance="no") method_enum, ", "
     write(fint,fmt="(I2,A2)", advance="no") problem_enum, ", "
-    write(fint,*) api_enum
+    write(fint,fmt="(I2,A2)", advance="no") api_enum, ", "
+    write(fint,*) COMPILER_ENUM
     ! write(fint,*) method_name
   end subroutine report
 
