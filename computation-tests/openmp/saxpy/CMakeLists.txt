@@ -1,8 +1,10 @@
 # parallel, private, firstprivate, shared, copyin,
 set(prob "saxpy")
+set(api  "omp")
 
 # --- Fortran Intrinsics
-create_test(do)
+gen_test(arraySyntax)
+gen_test(do)
 # create_test(doConcurrent1)
 # create_test(doConcurrent2)
 
