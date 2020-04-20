@@ -4,7 +4,7 @@ program matsum_do
   real, dimension(:), allocatable :: z,x,y
   real :: alpha
   integer :: n, i, j, max_n, step, fint, message
-  integer(kind=8) :: count_fin, count_init, count_rate
+  integer(kind=8) :: count_fin, count_init, count_rate, allocate_size
   double precision :: time
   logical :: fexists
 
@@ -17,9 +17,10 @@ program matsum_do
   ! allocate(a(n),b(n,m),c(m))
   do while (n .le. max_n)
 
-  allocate(z(n))
-  allocate(x(n))
-  allocate(y(n))
+  allocate_size = n*n
+  allocate(z(allocate_size))
+  allocate(x(allocate_size))
+  allocate(y(allocate_size))
 
   call random_init(.true.,.false.)
   call random_number(x)
@@ -95,9 +96,11 @@ program matsum_do
 #ifdef OMPTARGETDATALESS
   !$omp target exit data map(from:z)
 #endif
-
+  print *, "allocate_size", allocate_size
+  print *, count_rate, count_init, count_fin
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, MESSAGE_m, API_api, PROBLEM_p, fint)
+  print *, "time = ", time
+  call report(allocate_size, time, MESSAGE_m, API_api, PROBLEM_p, fint)
 
 
   deallocate(z,x,y)
