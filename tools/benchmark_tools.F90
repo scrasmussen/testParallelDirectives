@@ -7,7 +7,7 @@ module benchmark_tools
      enumerator :: omp_api, acc_api
   end enum
   enum, bind(C)
-     enumerator :: matsum_p, saxpy_p
+     enumerator :: matsum_p, saxpy_p, matmult_p
   end enum
   enum, bind(C)
      enumerator :: arraySyntax_m, do_m
@@ -43,13 +43,14 @@ contains
 
   subroutine report(n, time, method_enum, problem_enum, api_enum, fint)
     use iso_c_binding, only: c_int
-    integer, intent(IN) :: n, fint
+    integer(kind=8), intent(IN) :: n
+    integer, intent(IN) :: fint
     double precision, intent(IN) :: time
     ! character(*), intent(IN) :: method_name
     integer(c_int) :: problem_enum, method_enum, api_enum
 
-    write(fint,fmt="(I8,A2)", advance="no") n, ", "
-    write(fint,fmt="(F20.6,A2)", advance="no") time, ", "
+    write(fint,fmt="(I16,A2)", advance="no") n, ", "
+    write(fint,fmt="(F30.16,A2)", advance="no") time, ", "
     write(fint,fmt="(I2,A2)", advance="no") method_enum, ", "
     write(fint,fmt="(I2,A2)", advance="no") problem_enum, ", "
     write(fint,fmt="(I2,A2)", advance="no") api_enum, ", "

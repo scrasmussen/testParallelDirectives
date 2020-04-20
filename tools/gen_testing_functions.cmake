@@ -9,6 +9,7 @@ function(gen_test name)
 	add_executable(${prob}_${name} ${prob}.F90)
 	string(TOUPPER ${name} name_upper)
 	target_compile_definitions(${prob}_${name} PRIVATE
+	  ${name_upper}
  	  MESSAGE_m=${name}_m
 	  PROBLEM_p=${prob}_p
 	  API_api=${api}_api)
