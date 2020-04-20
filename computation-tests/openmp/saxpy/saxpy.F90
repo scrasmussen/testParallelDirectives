@@ -68,9 +68,7 @@ program matsum_do
 
 #ifdef OMPWORKSHARE
   !$omp parallel workshare
-  do i=1,n
-     z = alpha * x + y
-  end do
+  z = alpha * x + y
   !$omp end parallel workshare
 #endif
 
@@ -96,12 +94,9 @@ program matsum_do
 #ifdef OMPTARGETDATALESS
   !$omp target exit data map(from:z)
 #endif
-  print *, "allocate_size", allocate_size
-  print *, count_rate, count_init, count_fin
-  time = compute_time(count_rate, count_init, count_fin)
-  print *, "time = ", time
-  call report(allocate_size, time, MESSAGE_m, API_api, PROBLEM_p, fint)
 
+  time = compute_time(count_rate, count_init, count_fin)
+  call report(allocate_size, time, MESSAGE_m, API_api, PROBLEM_p, fint)
 
   deallocate(z,x,y)
   n = n * step
