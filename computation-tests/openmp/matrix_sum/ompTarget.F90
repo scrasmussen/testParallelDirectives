@@ -3,7 +3,7 @@ program matsum_doloop
   implicit none
   double precision, dimension(:,:), allocatable :: A,B,C
   integer :: m, n, i, j, sum, max_n, step, fint
-  integer(kind=8) :: count_fin, count_init, count_rate
+  integer(kind=8) :: count_fin, count_init, count_rate, allocate_size
   double precision :: time
   logical :: fexists
 
@@ -18,6 +18,7 @@ program matsum_doloop
   do while (n .le. max_n)
 
   m = n
+  allocate_size = n * m
   allocate(a(n,m))
   allocate(b(n,m))
   allocate(c(n,m))
@@ -39,7 +40,7 @@ program matsum_doloop
   call system_clock(count_fin)
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(n, time, ompTarget_m, omp_api, matsum_p, fint)
+  call report(allocate_size, time, ompTarget_m, omp_api, matsum_p, fint)
 
   deallocate(a,b,c)
   n = n * step
