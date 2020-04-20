@@ -17,7 +17,8 @@ program matsum_do
   ! allocate(a(n),b(n,m),c(m))
   do while (n .le. max_n)
 
-  allocate_size = n*n
+  allocate_size = n*n*2 ! multiplying by n because other problems are arrays and
+                        ! multiplying by 2 because others are double precision
   allocate(z(allocate_size))
   allocate(x(allocate_size))
   allocate(y(allocate_size))
