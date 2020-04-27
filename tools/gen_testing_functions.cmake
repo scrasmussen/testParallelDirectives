@@ -71,26 +71,31 @@ endfunction()
 
 
 function(gen_target_test name)
-	add_executable(${prob}_${name} ${prob}.F90 )
-	string(TOUPPER ${name} name_upper)
-	target_compile_definitions(${prob}_${name} PRIVATE
-		${name_upper}
- 	  MESSAGE_m=${name}_m
-	  PROBLEM_p=${prob}_p
-	  API_api=${api}_api)
-	target_link_libraries(${prob}_${name} benchmark_tools)
-	target_compile_options(${prob}_${name} PRIVATE -target-accel=nvidia60)
-	target_compile_options(${prob}_${name} PRIVATE -Wl,-rpath,./test)
-	# target_compile_options(${prob}_${name} PRIVATE -target-accel=sm_60) # !work
-	add_test(NAME ${prob}_${name}
-	  COMMAND ${launch} ./${prob}_${name})
-	# expands `make clean` to remove additional files
-	set_property(DIRECTORY APPEND PROPERTY
-	  ADDITIONAL_MAKE_CLEAN_FILES
-	  ${CMAKE_CURRENT_BINARY_DIR}/${prob}_1.ptx)
-	set_property(DIRECTORY APPEND PROPERTY
-	  ADDITIONAL_MAKE_CLEAN_FILES
-	  ${CMAKE_CURRENT_BINARY_DIR}/${prob}_1.cub)
+  # Copy file to binary so the outputted PTX will have unique names
+  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${prob}.F90
+    ${CMAKE_CURRENT_BINARY_DIR}/${name}.F90
+    COPYONLY)
+
+  add_executable(${prob}_${name} ${CMAKE_CURRENT_BINARY_DIR}/${name}.F90)
+  string(TOUPPER ${name} name_upper)
+  target_compile_definitions(${prob}_${name} PRIVATE
+    ${name_upper}
+    MESSAGE_m=${name}_m
+    PROBLEM_p=${prob}_p
+    API_api=${api}_api)
+  target_link_libraries(${prob}_${name} benchmark_tools)
+  target_compile_options(${prob}_${name} PRIVATE -target-accel=nvidia60)
+  # target_compile_options(${prob}_${name} PRIVATE -target-accel=sm_60) # !work
+
+  add_test(NAME ${prob}_${name}
+    COMMAND ${launch} ./${prob}_${name})
+  # expands `make clean` to remove additional files
+  set_property(DIRECTORY APPEND PROPERTY
+    ADDITIONAL_MAKE_CLEAN_FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/${prob}_${name}_1.ptx)
+  set_property(DIRECTORY APPEND PROPERTY
+    ADDITIONAL_MAKE_CLEAN_FILES
+    ${CMAKE_CURRENT_BINARY_DIR}/${prob}_${name}_1.cub)
 endfunction()
 
 
