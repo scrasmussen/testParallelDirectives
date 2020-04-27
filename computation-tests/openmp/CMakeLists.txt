@@ -1,4 +1,5 @@
 add_subdirectory(matrix_sum)
+add_subdirectory(saxpy)
 
 # from Performance Evaluation of OpenMP's Target Construct on GPUs
 # - Hayashi and Shirako

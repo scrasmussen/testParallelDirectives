@@ -7,12 +7,11 @@ program matsum_do
   integer(kind=8) :: count_fin, count_init, count_rate, allocate_size
   double precision :: time
   logical :: fexists
-
   call open_report(fint)
 
   n = 64
   max_n = 20000
-  ! max_n = 500
+  max_n = 500
   step = 2
   ! allocate(a(n),b(n,m),c(m))
   do while (n .le. max_n)
@@ -30,7 +29,7 @@ program matsum_do
   z = 0
 
 #ifdef OMPTARGETDATALESS
-  !$omp target enter data map(to:alpha,to:x,to:y)
+  !$omp target enter data map(to:alpha,x,y)
 #endif
 
   call system_clock(count_init, count_rate)
