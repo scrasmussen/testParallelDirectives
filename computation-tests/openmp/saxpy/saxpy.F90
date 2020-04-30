@@ -11,7 +11,7 @@ program matsum_do
 
   n = 64
   max_n = 20000
-  max_n = 500
+  ! max_n = 500
   step = 2
   ! allocate(a(n),b(n,m),c(m))
   do while (n .le. max_n)
