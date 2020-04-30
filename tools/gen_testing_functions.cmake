@@ -62,7 +62,7 @@ function(create_omp_test name)
 	target_link_libraries(${prob}_${name} benchmark_tools)
 	if("Cray" STREQUAL CMAKE_Fortran_COMPILER_ID)
 	  add_test(NAME ${prob}_${name}
-	    COMMAND ${launch} -d $ENV{OMP_NUM_THREADS} ./${name} )
+	    COMMAND ${launch} -d $ENV{OMP_NUM_THREADS} ./${prob}_${name} )
 	else()
 	  add_test(NAME ${prob}_${name}
    	    COMMAND ${prob}_${name})
@@ -92,10 +92,10 @@ function(gen_target_test name)
   # expands `make clean` to remove additional files
   set_property(DIRECTORY APPEND PROPERTY
     ADDITIONAL_MAKE_CLEAN_FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${prob}_${name}_1.ptx)
+    ${CMAKE_CURRENT_BINARY_DIR}/${name}_1.ptx)
   set_property(DIRECTORY APPEND PROPERTY
     ADDITIONAL_MAKE_CLEAN_FILES
-    ${CMAKE_CURRENT_BINARY_DIR}/${prob}_${name}_1.cub)
+    ${CMAKE_CURRENT_BINARY_DIR}/${name}_1.cub)
 endfunction()
 
 
