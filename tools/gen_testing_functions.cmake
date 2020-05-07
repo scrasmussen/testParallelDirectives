@@ -71,6 +71,9 @@ endfunction()
 
 
 function(gen_target_test name)
+  if (NOT ${build_omp_target})
+    return()
+  endif()
   # Copy file to binary so the outputted PTX will have unique names
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/${prob}.F90
     ${CMAKE_CURRENT_BINARY_DIR}/${name}.F90
@@ -100,6 +103,9 @@ endfunction()
 
 
 function(create_target_test name)
+	if (NOT ${build_omp_target})
+	  return()
+	endif()
 	add_executable(${prob}_${name} ${name}.F90 )
 	string(TOUPPER ${name} name_upper)
 	target_compile_definitions(${prob}_${name} PRIVATE

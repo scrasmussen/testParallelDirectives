@@ -50,10 +50,12 @@ endif()
 # GNU flags
 if("GNU" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+  set(build_omp_target FALSE)
 endif()
 # Intel flags
 if("Intel" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
+  set(build_omp_target FALSE PARENT_SCOPE)
 endif()
 # PGI flags
 if("PGI" STREQUAL CMAKE_Fortran_COMPILER_ID)
