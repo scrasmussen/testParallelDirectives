@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
-project(testParallelDirectives LANGUAGES Fortran)
 
-
+# Need this here otherwise the project function breaks
 # --- Figure out which compiler is being used ---
 # This is for Cray systems
 execute_process(
@@ -24,7 +23,11 @@ elseif(is_gnu GREATER -1)
 elseif(is_pgi GREATER -1)
 	set(CMAKE_Fortran_COMPILER_ID "PGI")
 	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=pgi_c")
+	# mpich libraries not currently working, need to use pgfortran
+	set(CMAKE_Fortran_COMPILER "pgfortran")
 endif()
+project(testParallelDirectives LANGUAGES Fortran)
+
 
 
 # --- Set Environment Variables ---
@@ -51,11 +54,13 @@ endif()
 if("GNU" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
   set(build_omp_target FALSE)
+	message("Set build_omp_target to ${build_omp_target}")
 endif()
 # Intel flags
 if("Intel" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
-  set(build_omp_target FALSE PARENT_SCOPE)
+  set(build_omp_target FALSE)
+	message("Set build_omp_target to ${build_omp_target}")
 endif()
 # PGI flags
 if("PGI" STREQUAL CMAKE_Fortran_COMPILER_ID)
