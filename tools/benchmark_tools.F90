@@ -1,15 +1,15 @@
 module benchmark_tools
   implicit none
-  enum, bind(C)
+  enum, bind(C) ! Compiler enum
      enumerator :: cray_c, gnu_c, intel_c, pgi_c
   end enum
-  enum, bind(C)
+  enum, bind(C) ! Parallel API enum
      enumerator :: omp_api, acc_api
   end enum
-  enum, bind(C)
+  enum, bind(C) ! Problem enum
      enumerator :: matsum_p, saxpy_p, matmult_p
   end enum
-  enum, bind(C)
+  enum, bind(C) ! Solution method enum
      enumerator :: arraySyntax_m, do_m
      enumerator :: doConcurrent1_m, doConcurrent2_m
      enumerator :: ompParallelDo_m, ompParallelLoop_m
