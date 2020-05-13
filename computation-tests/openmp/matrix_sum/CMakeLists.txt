@@ -1,17 +1,17 @@
 # parallel, private, firstprivate, shared, copyin,
-set(prob "matrixsum")
+set(prob "matsum")
 
 # --- Fortran Intrinsics
-create_test(arraySyntax)
-create_test(do)
-create_test(doConcurrent1)
-create_test(doConcurrent2)
+gen_test(arraySyntax)
+gen_test(do)
+gen_test(doConcurrent1)
+gen_test(doConcurrent2)
 
 # --- OpenMP
-create_omp_test(ompParallelDo)
-create_omp_test(ompParallelLoop)
-create_omp_test(ompWorkshare)
-create_target_test(ompTarget)
-create_target_test(ompTargetDataless)
+gen_omp_test(ompParallelDo)
+gen_omp_test(ompParallelLoop)
+gen_omp_test(ompWorkshare)
+gen_target_test(ompTarget)
+gen_target_test(ompTargetDataless)
 
 # --- OpenACC
