@@ -22,13 +22,15 @@ program matsum_do
   allocate(b(n,m))
   allocate(c(n,m))
 
+#ifdef RANDOMINIT
   call random_init(.true.,.false.)
+#endif
   call random_number(b)
   call random_number(c)
   a = 0
 
 #ifdef OMPTARGETDATALESS
-  !$omp target enter data map(to:B_input,C_input)
+  !$omp target enter data map(to:B,C)
 #endif
 
   call system_clock(count_init, count_rate)
@@ -97,7 +99,7 @@ program matsum_do
   !$omp target teams distribute parallel do collapse(2)
   do j=1,n
     do i=1,m
-      A_output(i,j) = B_input(i,j) + C_input(i,j)
+      A(i,j) = B(i,j) + C(i,j)
     end do
   end do
   !$omp end target teams distribute parallel do
@@ -106,11 +108,11 @@ program matsum_do
 ! ---- Stop the timer ----
   call system_clock(count_fin)
 #ifdef OMPTARGETDATALESS
-  !$omp target exit data map(from:A_output)
+  !$omp target exit data map(from:A)
 #endif
 
   time = compute_time(count_rate, count_init, count_fin)
-  call report(allocate_size, time, do_m, omp_api, matsum_p, fint)
+  call report(allocate_size, time, MESSAGE_m, API_api, PROBLEM_p, fint)
 
 
   deallocate(a,b,c)

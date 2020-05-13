@@ -1,5 +1,6 @@
 # parallel, private, firstprivate, shared, copyin,
 set(prob "matsum")
+set(api  "omp")
 
 # --- Fortran Intrinsics
 gen_test(arraySyntax)
