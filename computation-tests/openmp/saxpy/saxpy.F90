@@ -22,7 +22,9 @@ program matsum_do
   allocate(x(allocate_size))
   allocate(y(allocate_size))
 
+#ifdef RANDOMINIT
   call random_init(.true.,.false.)
+#endif
   call random_number(x)
   call random_number(y)
   call random_number(alpha)
