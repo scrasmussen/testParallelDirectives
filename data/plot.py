@@ -89,18 +89,25 @@ def set_and_run_plot(group_by):
 
         fig, axs = plt.subplots(2, 2, sharex=True, sharey=True)
         plt.suptitle(problem_e[prob_num], fontsize=14)
+        plt.xscale("log")
+        axes = plt.gca()
+        axes.set_ylim([0,1])
+
+        for compiler, c_data in prob_data.groupby(group_by):
+            print("   ---",compiler_e[compiler],"---")
+            i = int(compiler/2); j =  compiler%2
+            axs[i,j].set_title(compiler_e[compiler])
+
+            for method, m_data in c_data.groupby("method_enum"):
+            # q.plot(x=' n', y='time', kind='line', ax=axs[i,j], alpha=0.75,
+                lw=2
+                ls=['-','--','-.',':'][method%4]
+
+                m_data.plot(x=' n', y='time', ax=axs[i,j], alpha=0.75,
+                            label=name_e[method], marker=getSymbol(compiler),
+                            color=color_map[method], linestyle=ls, linewidth=lw)
 
 
-        for group, q in prob_data.groupby(group_by):
-            print("   ---",enum[group],"---")
-
-            i = int(group/2); j =  group%2
-            axs[i,j].set_title(enum[group])
-
-            # ARTLESS: spilt into four windows
-            axs[i,j].plot(q[' n'], q['time'])
-            # group_data.plot(x=' n', y='time', kind='line', ax=ax, alpha=0.75,
-            #            label=name_e[group], marker=getSymbol(group))
             # plt.show()
 
         plt.show()
@@ -108,8 +115,9 @@ def set_and_run_plot(group_by):
 
 
 
+
 choices = ['method_enum', 'problem_enum', 'compiler_enum']
-set_and_run_plot(choices[2])
+q = set_and_run_plot(choices[2])
 
 
 print('Fin')
@@ -123,9 +131,9 @@ for prob_name, problem in data.groupby('method_enum'):
     ax.set_title(problem_e[prob_name])
     for name, group in problem.groupby('method_enum'):
         lw=5-4*name/len(color)
-        lw=2
-        # print(lw)
 
+        # print(lw)
+        lw=2
         ls=['-','--','-.',':'][name%4]
 
         group.plot(x=' n', y='time', kind='line', ax=ax, alpha=0.75,
