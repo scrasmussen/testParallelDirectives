@@ -13,21 +13,16 @@ string(FIND "${fc_version}" "GNU"   is_gnu)
 string(FIND "${fc_version}" "PGI"   is_pgi)
 if (is_cray GREATER -1)
 	set(CMAKE_Fortran_COMPILER_ID "Cray")
-	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=cray_c")
-elseif(is_intel GREATER -1)
-	set(CMAKE_Fortran_COMPILER_ID "Intel")
-	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=intel_c")
 elseif(is_gnu GREATER -1)
 	set(CMAKE_Fortran_COMPILER_ID "GNU")
-	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=gnu_c")
+elseif(is_intel GREATER -1)
+	set(CMAKE_Fortran_COMPILER_ID "Intel")
 elseif(is_pgi GREATER -1)
 	set(CMAKE_Fortran_COMPILER_ID "PGI")
-	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=pgi_c")
-	# mpich libraries not currently working, need to use pgfortran
+	# mpich libraries not working, need to use pgfortran
 	set(CMAKE_Fortran_COMPILER "pgfortran")
 endif()
 project(testParallelDirectives LANGUAGES Fortran)
-
 
 
 # --- Set Environment Variables ---
@@ -48,23 +43,30 @@ set(CMAKE_EXEC_EXECUTABLE "")
 # Cray flags
 if("Cray" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -h omp")
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=cray_c")
   set(CMAKE_EXEC_EXECUTABLE "aprun -n 1")
+	set(random_init RANDOM_INIT)
 endif()
 # GNU flags
 if("GNU" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -fopenmp")
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=gnu_c")
   set(build_omp_target FALSE)
+	set(random_init RANDOM_INIT)
 	message("Set build_omp_target to ${build_omp_target}")
 endif()
 # Intel flags
 if("Intel" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -qopenmp")
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=intel_c")
   set(build_omp_target FALSE)
 	message("Set build_omp_target to ${build_omp_target}")
 endif()
 # PGI flags
 if("PGI" STREQUAL CMAKE_Fortran_COMPILER_ID)
   set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -mp")
+	set(CMAKE_Fortran_FLAGS "${CMAKE_Fortran_FLAGS} -DCOMPILER_ENUM=pgi_c")
+	set(build_omp_target FALSE)
 endif()
 # report the choices just to be clear
 message("-- Compiler is ${CMAKE_Fortran_COMPILER_ID} with FFLAGS = \
