@@ -1,0 +1,8 @@
+#+STARTUP: content
+* Algorithm to Add
+** Scan?
+** Prefix Sum
+https://en.wikipedia.org/wiki/Prefix_sum
+** <<LOOK FOR OTHERS>>
+[[https://www.cs.cmu.edu/~scandal/cacm/node7.html][Parallel Algorithms]]
+[[http://www2.cs.siu.edu/~cs401/Textbook/ch7.pdf][Parallel Programming and Parallel Algorithms Chapter]]
