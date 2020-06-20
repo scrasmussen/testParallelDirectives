@@ -1,5 +1,4 @@
-# Tests
-
+* Tests
 
 Here is a list of test I should do or look at implementing
 
@@ -8,3 +7,8 @@ EP    :
 SPMUL : multiply two floating point numbers
 CG    : Conjucate Gradient https://en.wikipedia.org/wiki/Conjugate_gradient_method#Numerical_example
 FT    : Fourier Transform  https://en.wikipedia.org/wiki/Fourier_transform
+
+
+* Compilers
+** TODO
+*** Intel compile doesn't support Fortran 2018 random_init
