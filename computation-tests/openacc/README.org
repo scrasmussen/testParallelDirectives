@@ -1,0 +1,80 @@
+* TOADD
+** test problems
+*** classic gram-schmidt method
+https://www.drdobbs.com/parallel/the-openacc-execution-model/240006334
+
+
+** <<NOTE>>
+- need to add loop to nested loops of of parallel loop
+
+** concepts
+*** gangs
+
+** Parallelize Constructs
+*** gang, worker, vector
+**** gang: a threadblock
+can't share data
+**** worker: a warp
+**** vector: a CUDA thread
+
+*** kernels
+the most basic, recognizes parallelization -[1]
+*** parallel
+parallelized across gangs
+*** parallel loop
+what you really want
+*** kernels vs parallel loop difference
+kernels is a hint, parallel is an assertion
+ -[1]
+*** loop
+gives info about next loop in source codee
+two types: "clauses for correctness and clauses for optimization" -[1]
+*** best practices
+Best Practice:C programmers should use therestrictkeyword (or the
+  __restrict decorator in C++)whenever possible to inform the compiler that
+ the pointers are not aliased, which will frequently give thecompiler enough
+ information to then parallelize loops that it would not have otherwise
+ -[1]
+
+
+** Data Locality
+*** data
+a hint
+NOTE: implicit data region is created by each parallel and kernels region
+*** <<data clauses>>
+*** copy
+*** copyin
+*** copyout
+*** create
+"create space for the listed variables and release it at the end of the region,
+ but do not copy toor from the device." -[1]
+*** present
+just note that the data is present on the device
+*** update
+*** deviceptr
+variable uses device memory managed outside of OpenACC, the variable can be
+ used without address translation -[1]
+this used for interoperability
+*** shaping arrays
+*** unstructured data lifetimes?
+for handeling OACC with C++ classes and their constructors/destructores/copytors
+
+
+* Flags
+-- See what the compiler outputs
+  $ pgcc -acc -ta=tesla -Minfo=accel laplace2d-parallel.c
+
+-Minfo=opt
+
+
+* Terminology
+** gang, worker, vector
+*** gang: a threadblock
+can't share data
+*** worker: a warp
+*** vector: a CUDA thread
+
+
+* Footnotes
+
+[1] OpenACC Programming and best practices guide
